@@ -1,0 +1,18 @@
+
+.mainCont{
+    width: 100%;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    border: .5px solid #5591b7;
+    border-radius: 10px;
+}
+.links {
+  text-decoration: none;
+  color:#5591b7; 
+  color: #000000;
+}
+
+.links:hover {
+  color: #000000;
+}

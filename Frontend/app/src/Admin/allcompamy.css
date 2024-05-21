@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.navbarhomeadmin {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    color:#5591b7; 
+    z-index: 1000;
+   background-color: rgb(204, 204, 204);
+    padding: 10px 0;
+}
+
+.navbarhomeadmin nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbarhomeadmin nav ul li {
+    margin: 0 15px;
+}
+
+.navbarhomeadmin nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    display: block;
+}
+
+.navbarhomeadmin nav ul li a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+.content {
+    margin-top: 20px;
+    width: 100%;
+    padding: 20px;
+}
+
+.profile-container {
+    margin-top: 20px;
+    width: 60%;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-header h1 {
+    margin: 0;
+    color: #333;
+}
+
+.profile-content {
+    display: flex;
+    align-items: center;
+}
+
+.profile-picture {
+    flex: 1;
+    text-align: center;
+}
+
+.profile-picture img {
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+}
+
+.profile-details {
+    flex: 2;
+}
+
+.profile-details h6 {
+    margin: 0;
+    color: #333;
+}
+
+.profile-details p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.profile-details button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile-details button:hover {
+    background-color: #218838;
+}
+
+.order-history {
+    margin-top: 30px;
+}
+
+.order-history h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.order-history ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.order-history ul li {
+    background: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}

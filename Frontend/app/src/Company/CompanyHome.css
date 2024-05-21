@@ -1,0 +1,7 @@
+.navbarhomecompany {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    color:#5591b7; 
+    z-index: 1000;
+}

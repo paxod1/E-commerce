@@ -1,0 +1,24 @@
+.maindivOfProfiles{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.profileBox{
+    padding: 50px;
+    color: #050505;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.heading{
+    font-size: 30px;
+}
+.updata{
+    text-decoration: none;
+    color: rgb(63, 60, 60);
+}
+Link{
+    text-decoration: none;
+}
