@@ -314,7 +314,7 @@ function UserFooter() {
                 </div>
                 <div class="credit-wrapper d-block text-secondary fs-7 text-start text-sm-center ">
                   Built by<a href="https://bootstrapbrain.com/" class="link-secondary text-decoration-none">
-                    BootstrapBrain</a> with <span class="text-primary">&#9829;</span>
+                    Famous</a> with <span class="text-primary">&#9829;</span>
                 </div>
               </div>
             </div>

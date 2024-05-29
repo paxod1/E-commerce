@@ -7,9 +7,6 @@ var braintree = require("braintree");
 const order = require('../Model/Order')
 
 
-
-
-
 router.post('/signup', async (req, res) => {
     console.log("req.body>>>>>>>>>>>>>", req.body)
     req.body.password = cripto.AES.encrypt(req.body.password, process.env.Passkey).toString()

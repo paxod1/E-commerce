@@ -37,6 +37,7 @@ function Cart() {
     const fetchCart = async () => {
         try {
             const result = await axios.get('http://localhost:5000/Admin/displaycard', { params: { userID } });
+            console.log(result.data)
             setCartSize(result.data.length);
             setAllProduct(result.data);
 
@@ -151,6 +152,7 @@ function Cart() {
                                                         <div className="d-flex flex-row align-items-center mb-1">
                                                             <h4 className="mb-1 me-1">${data.productprice}</h4>
                                                         </div>
+                                                        <h6 className="text-success">Quantity:{data.Quantity} </h6>
                                                         <h6 className="text-success">Free shipping</h6>
                                                         <div className="d-flex flex-column mt-4">
                                                             <Link to={`/BuyNow/${data._id}`} style={{ marginRight: "5px" }}>

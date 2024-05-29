@@ -7,7 +7,7 @@ const JWT = require('jsonwebtoken')
 const multer = require('multer')
 const VerifyToken = require('../VerifyToken')
 const { constants } = require('crypto')
-const order =require('../Model/Order')
+const order = require('../Model/Order')
 
 
 
@@ -15,7 +15,7 @@ const order =require('../Model/Order')
 
 
 router.post('/signup', async (req, res) => {
-   
+
     console.log("req.body>>>>>>>>>>>>>", req.body)
     req.body.password = cripto.AES.encrypt(req.body.password, process.env.AdminPasskey).toString()
     try {
@@ -81,10 +81,10 @@ const upload = multer({ storage: storage })
 
 router.post('/upload', upload.single("file"), async (req, res) => {
     console.log(req.body)
-    const { productname, productdocs, companyname,productprice,productofferprice,ComapanyID  } = req.body;
+    const { productname, productdocs, companyname, productprice, productofferprice, ComapanyID } = req.body;
     const imageName = req.file.filename
     console.log(imageName)
-    console.log("from backend end>>>>>>", productname, productdocs, companyname,productofferprice)
+    console.log("from backend end>>>>>>", productname, productdocs, companyname, productofferprice)
     try {
         if (!productprice || !productname || !productdocs || !companyname || !productofferprice) {
             return res.status(400).json({ error: "Required fields are missing" });
@@ -105,28 +105,7 @@ router.post('/upload', upload.single("file"), async (req, res) => {
         console.log(err)
     }
 })
-router.post('/addToCart', upload.single("file"), async (req, res) => {
-    const { image, productname, productdocs, companyname,productprice,productofferprice,ComapanyID,userID  } = req.body;
-    console.log("from backend end>>>>>>>>>>>>>>>>>>>add to cart", image, productname, productdocs, companyname,productofferprice,userID,ComapanyID)
-    try {
-        if (!image || !productname || !productdocs || !companyname || !productofferprice) {
-            return res.status(400).json({ error: "Required fields are missing" });
-        }
-        await CartSchema.create({ 
-            image,
-            productname,
-            productdocs,
-            companyname,
-            productprice,
-            productofferprice,
-            ComapanyID,
-            userID 
-        });
-        res.status(200).json("success");
-    } catch (err) {
-        console.log(err)
-    }
-})
+
 router.get("/getimage", async (req, res) => {
     try {
         console.log("from backend products??????????:")
@@ -138,19 +117,47 @@ router.get("/getimage", async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 })
-router.delete('/deleteproduct/:id',async(req,res)=>{
+router.delete('/deleteproduct/:id', async (req, res) => {
     console.log(req.params.id);
-    try{
+    try {
         await Productschema.findByIdAndDelete(req.params.id)
         res.status(200).json("deleted..................")
-    }catch(err){
+    } catch (err) {
         res.status(500).json(err)
     }
 })
+router.post('/addToCarts', upload.single("file"), async (req, res) => {
+    const { image, productname, productdocs, companyname, productprice, productofferprice, ComapanyID, userID, productID, Quantity } = req.body;
+    try {
+        let cartItem = await CartSchema.findOne({ userID, productID });
+        if (cartItem) {
+            cartItem.Quantity = cartItem.Quantity+1;
+            await cartItem.save();
+        } else {
+            
+            await CartSchema.create({
+                image,
+                productname,
+                productdocs,
+                companyname,
+                productprice,
+                productofferprice,
+                ComapanyID,
+                userID,
+                productID,
+                Quantity
+            });
+        }
+        res.status(200).json("success");
+    } catch (err) {
+        console.log("Error in addToCarts:", err);
+        res.status(500).json("error");
+    }
+});
 
 
 router.get("/displaycard", async (req, res) => {
-    const { userID } = req.query; 
+    const { userID } = req.query;
     try {
         const data = await CartSchema.find({ userID });
         res.status(200).json(data);
@@ -159,74 +166,74 @@ router.get("/displaycard", async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
-router.delete("/removeFromCart/:id",async (req,res)=>{
-        try{
-            console.log ("from backend:",req.params.id)
-            const deleteData=await CartSchema.findByIdAndDelete(req.params.id)
-          
-                res.status(200).json("deleted sussusfully")
-            
-        }catch(err){
-            res.status(401).json("internal server error")
-        }
-    
+router.delete("/removeFromCart/:id", async (req, res) => {
+    try {
+        console.log("from backend:", req.params.id)
+        const deleteData = await CartSchema.findByIdAndDelete(req.params.id)
+
+        res.status(200).json("deleted sussusfully")
+
+    } catch (err) {
+        res.status(401).json("internal server error")
+    }
+
 })
 router.get('/FindProduct/:id', async (req, res) => {
     try {
-      console.log("Fetching product from Productschema with ID:", req.params.id);
-      const product = await Productschema.findById(req.params.id);
-      if (product) {
-        res.status(200).json(product);
-        console.log("Product fetched:", product);
-      } else {
-        res.status(404).json({ message: "Product not found" });
-        console.log("Product not found for ID:", req.params.id);
-      }
+        console.log("Fetching product from Productschema with ID:", req.params.id);
+        const product = await Productschema.findById(req.params.id);
+        if (product) {
+            res.status(200).json(product);
+            console.log("Product fetched:", product);
+        } else {
+            res.status(404).json({ message: "Product not found" });
+            console.log("Product not found for ID:", req.params.id);
+        }
     } catch (err) {
-      console.error("Error fetching product from Productschema:", err);
-      res.status(500).json({ error: "Internal Server Error" });
+        console.error("Error fetching product from Productschema:", err);
+        res.status(500).json({ error: "Internal Server Error" });
     }
-  });
-router.get('/FindProductFromAddToCart/:id',async (req,res)=>{
-    try{
-        console.log("from backend.>>>>>>>>>>>>>>>>>>.",req.params.id)
-        const product=await CartSchema.findById(req.params.id)
+});
+router.get('/FindProductFromAddToCart/:id', async (req, res) => {
+    try {
+        console.log("from backend.>>>>>>>>>>>>>>>>>>.", req.params.id)
+        const product = await CartSchema.findById(req.params.id)
         res.status(200).json(product)
         console.log(product)
-        
-    }catch(err){
+
+    } catch (err) {
         res.status(401).json(err)
     }
 })
-router.post('/orderPost',async (req,res)=>{
-    console.log('from backend>>>>>>>>>>>>>>>>>>>>>',req.body)
-    try{
-        const newOrder= new order(req.body)
+router.post('/orderPost', async (req, res) => {
+    console.log('from backend>>>>>>>>>>>>>>>>>>>>>', req.body)
+    try {
+        const newOrder = new order(req.body)
         await newOrder.save()
         res.status(200).json("susses")
         console.log("sussess")
-    }catch(err){
-        console.log("err from backend????????",err)
+    } catch (err) {
+        console.log("err from backend????????", err)
         res.status(400).json(err)
-       
+
     }
 })
-router.get('/Oreders',async (req,res)=>{
-    const {userID}=req.query;
-    try{
-        const data = await order.find({userID});
+router.get('/Oreders', async (req, res) => {
+    const { userID } = req.query;
+    try {
+        const data = await order.find({ userID });
         console.log("from backend:", data);
         res.status(200).json(data);
-    }catch(err){
+    } catch (err) {
         res.status(400).json(err)
     }
 })
 router.get('/companyOrders', async (req, res) => {
-    const { ComapanyID } = req.query; 
+    const { ComapanyID } = req.query;
     console.log("CompanyID from backend:", ComapanyID);
 
     try {
-        const data = await order.find({ 'newOrder.ComapanyID': ComapanyID }); 
+        const data = await order.find({ 'newOrder.ComapanyID': ComapanyID });
         console.log("Data fetched from database:", data);
         res.status(200).json(data);
     } catch (err) {
@@ -235,9 +242,9 @@ router.get('/companyOrders', async (req, res) => {
     }
 });
 router.get("/getcompanyproduct", async (req, res) => {
-    const { ComapanyID } = req.query; 
+    const { ComapanyID } = req.query;
     try {
-        console.log("from backend products??????????:",ComapanyID)
+        console.log("from backend products??????????:", ComapanyID)
         const data = await Productschema.find({ ComapanyID });
         console.log("from backend:", data);
         res.status(200).json(data);
@@ -246,11 +253,11 @@ router.get("/getcompanyproduct", async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 })
-router.delete('/orderdelete/:id',async(req,res)=>{
-    try{
-          await order.findByIdAndDelete(req.params.id)
-          res.status(200).json('deleted sussefully')
-    }catch(err){
+router.delete('/orderdelete/:id', async (req, res) => {
+    try {
+        await order.findByIdAndDelete(req.params.id)
+        res.status(200).json('deleted sussefully')
+    } catch (err) {
         res.status(500).json(err)
     }
 })

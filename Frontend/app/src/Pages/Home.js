@@ -50,11 +50,11 @@ function Home() {
   }, []);
 
 
-
   async function addToCart(data) {
     try {
       setCartSize(cartSize + 1);
-      await axios.post('http://localhost:5000/Admin/addToCart', {
+      var Quantity=1;
+      await axios.post('http://localhost:5000/Admin//addToCarts', {
         image: data.image,
         productname: data.productname,
         productdocs: data.productdocs,
@@ -62,15 +62,14 @@ function Home() {
         productprice: data.productprice,
         productofferprice: data.productofferprice,
         ComapanyID:data.ComapanyID,
-        userID
-      },);
+        userID,
+        productID:data._id,
+        Quantity
+      });
     } catch (error) {
       console.error('Error adding to cart:', error);
     }
   }
-  const [show, setShow] = useState(false);
-  const closeSidebar = () => setShow(false);
-  const showSidebar = () => setShow(true)
   const [profile, setProfile] = useState([])
   useEffect(() => {
     async function GetProileData() {
@@ -147,7 +146,6 @@ function Home() {
                           <figcaption className="m-0 p-4">
                           <h5 className="card-title" id='card-titles' style={{color:"#5591b7"}}>{data.companyname}</h5>
                             <h5 className="card-title" id='card-titles'>{data.productname}</h5>
-                            <h5 className="card-title" id='card-titles'>{data.ComapanyID}</h5>
                             <button className="btn btn-black" id='pricebtn'><span id='prices'>${data.productprice}</span> <span id='offers'>Offer Price: </span><span id='offerprices'>${data.productofferprice}</span></button>
                           </figcaption>
                         </div>
