@@ -2,6 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://paxod1.github.io/E-commerce",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "@stripe/stripe-js": "^3.3.0",
@@ -35,7 +36,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "preload":"npm run build",
+    "predeploy":"npm run build",
     "deploy":"gh-pages -d build"
   },
   "eslintConfig": {
