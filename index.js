@@ -21,7 +21,7 @@ mongoose.connect(process.env.MongoUrl).then(()=>{
 app.use(express.json())
 
 app.get("/",(req,res)=>{
-    res.sendFile(path.join(__dirname,"Frontend","app","build","index.html"))
+    res.sendFile(path.join(__dirname,"/Frontend","/app","/build","/index.js"))
 })
 app.use('/home',UserRouter)
 app.use('/Admin',AdminRouter)
