@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 dontenv.config()
 
 app.use(cors({
-  origin: 'http://localhost:5000',
+  origin: 'https://e-commerce-22.onrender.com',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, 
@@ -34,13 +34,12 @@ mongoose.connect(process.env.MongoUrl).then(()=>{
 })
 
 
-app.use('/home',UserRouter)
-app.use('/Admin',AdminRouter)
-app.use('/company',CompanyRouter)
-
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'Frontend/app/build', 'index.html'));
 });
+app.use('/home',UserRouter)
+app.use('/Admin',AdminRouter)
+app.use('/company',CompanyRouter)
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`port ${PORT} is connected`);
