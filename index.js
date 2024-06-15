@@ -7,8 +7,8 @@ const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 dontenv.config()
 app.use(cors())
-app.use(express.static(path.join(__dirname,"Frontend","app","build")))
-app.use(bodyParser.urlencoded({extend:false}))
+app.use(express.static(path.join(__dirname, "../Frontend/app/build")));
+app.use(bodyParser.urlencoded({ extend: false }));
 const UserRouter=require('./Router/UserRouter')
 const AdminRouter=require('./Router/AdminRouter')
 const CompanyRouter=require('./Router/CompanyRouter')
@@ -20,9 +20,11 @@ mongoose.connect(process.env.MongoUrl).then(()=>{
 })
 app.use(express.json())
 
-app.get("/",(req,res)=>{
-    res.sendFile(path.join(__dirname,"/Frontend","/app","/build","/index.js"))
-})
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../Frontend/app/build", "index.html"));
+});
+
+
 app.use('/home',UserRouter)
 app.use('/Admin',AdminRouter)
 app.use('/company',CompanyRouter)
