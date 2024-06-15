@@ -6,10 +6,14 @@ const cors=require('cors')
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const path = require('path');
+const bodyParser = require('body-parser'); 
 dontenv.config()
 app.use(cors())
 app.use(express.static(path.join(__dirname, "../Frontend/app/build")));
-app.use(bodyParser.urlencoded({ extend: false }));
+app.use(bodyParser.urlencoded({ extended: false })); 
+app.use(express.json());
+
+
 const UserRouter=require('./Router/UserRouter')
 const AdminRouter=require('./Router/AdminRouter')
 const CompanyRouter=require('./Router/CompanyRouter')
@@ -19,7 +23,6 @@ mongoose.connect(process.env.MongoUrl).then(()=>{
 }).catch((err)=>{
     console.log(err)
 })
-app.use(express.json())
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../Frontend/app/build", "index.html"));
