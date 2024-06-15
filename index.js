@@ -23,8 +23,8 @@ app.use(express.json())
 app.use('/home',UserRouter)
 app.use('/Admin',AdminRouter)
 app.use('/company',CompanyRouter)
-app.listen(5000,()=>{
-    console.log("port 5000 is connected")
+app.listen(process.env.port,()=>{
+    console.log("port is connected")
 })
 
 
