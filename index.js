@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 dotenv.config();
 
 app.use(cors({
-  origin: 'https://e-commerce-104.onrender.com',
+  origin: 'https://e-commerce-105.onrender.com',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
