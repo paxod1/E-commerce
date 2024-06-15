@@ -28,8 +28,9 @@ app.get("/", (req, res) => {
 app.use('/home',UserRouter)
 app.use('/Admin',AdminRouter)
 app.use('/company',CompanyRouter)
-app.listen(process.env.port,()=>{
-    console.log("port is connected")
-})
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`port ${PORT} is connected`);
+});
 
 
