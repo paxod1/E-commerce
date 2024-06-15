@@ -9,7 +9,7 @@ const path = require('path');
 const bodyParser = require('body-parser'); 
 dontenv.config()
 app.use(cors({
-  origin: 'https://e-commerce-17.onrender.com',
+  origin: 'https://e-commerce-web-6qp7.onrender.com', // Replace with your frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,

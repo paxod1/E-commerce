@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
         console.log("pass:", Pass)
     } catch (err) {
 
-        res.status(500).json(err)
+        res.status(500).json("from backend>>..",err)
     }
 })
 router.get('/AdminProfile/:id', async (req, res) => {
