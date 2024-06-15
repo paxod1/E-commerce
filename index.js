@@ -17,7 +17,6 @@ app.use(cors({
   credentials: true,
 }));
 
-
 app.use(express.static(path.join(__dirname, 'Frontend/app/build')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
