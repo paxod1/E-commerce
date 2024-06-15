@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SampleUrl = 'https://e-commerce-22.onrender.com';
+const SampleUrl = 'http://localhost:5000';
 const persistedLoginData = localStorage.getItem("persist:logindata");
 const loginData = persistedLoginData ? JSON.parse(persistedLoginData) : {};
 const loginInfo = loginData.login ? JSON.parse(loginData.login).LoginInfo[0] : null;
