@@ -18,7 +18,6 @@ app.use(cors({
 }));
 
 app.use(express.static(path.join(__dirname, 'Frontend/app/build')));
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 const UserRouter = require('./Router/UserRouter');
@@ -26,7 +25,7 @@ const AdminRouter = require('./Router/AdminRouter');
 const CompanyRouter = require('./Router/CompanyRouter');
 
 mongoose.connect(process.env.MongoUrl).then(() => {
-  console.log("database is connected");
+  console.log("data base is connected");
 }).catch((err) => {
   console.log(err);
 });
