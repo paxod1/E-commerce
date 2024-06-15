@@ -9,7 +9,7 @@ const path = require('path');
 const bodyParser = require('body-parser'); 
 dontenv.config()
 app.use(cors({
-  origin: 'https://e-commerce-web-6qp7.onrender.com', // Replace with your frontend URL
+  origin: 'https://e-commerce-web-6qp7.onrender.com', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -40,7 +40,7 @@ app.use('/company',CompanyRouter)
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'Frontend/app/build', 'index.html'));
 });
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`port ${PORT} is connected`);
 });
