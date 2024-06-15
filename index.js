@@ -39,7 +39,7 @@ app.use('/Admin',AdminRouter)
 app.use('/company',CompanyRouter)
 
 
-app.get("/", (req, res) => {
+app.get("", (req, res) => {
   res.sendFile(path.join(__dirname, 'Frontend/app/build', 'index.html'));
 });
 
