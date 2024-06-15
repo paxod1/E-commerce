@@ -5,6 +5,7 @@ const dontenv=require('dotenv')
 const cors=require('cors')
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
+const path = require('path');
 dontenv.config()
 app.use(cors())
 app.use(express.static(path.join(__dirname, "../Frontend/app/build")));
