@@ -18,7 +18,7 @@ app.use(cors({
 }));
 
 
-app.use(express.static(path.join(__dirname, '/Frontend/app/build')));
+app.use(express.static(path.join(__dirname, 'Frontend/app/build')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -37,7 +37,7 @@ app.use('/Admin', AdminRouter);
 app.use('/company', CompanyRouter);
 
 app.get('', (req, res) => {
-  res.sendFile(path.join(__dirname, '/Frontend/app/build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'Frontend/app/build', 'index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
