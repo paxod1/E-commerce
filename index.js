@@ -24,14 +24,14 @@ mongoose.connect(process.env.MongoUrl).then(()=>{
     console.log(err)
 })
 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../Frontend/app/build", "index.html"));
-});
-
 
 app.use('/home',UserRouter)
 app.use('/Admin',AdminRouter)
 app.use('/company',CompanyRouter)
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, 'Frontend/app/build', 'index.js'));
+});
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`port ${PORT} is connected`);
