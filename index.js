@@ -8,11 +8,12 @@ const upload = multer({ dest: 'uploads/' })
 const path = require('path');
 const bodyParser = require('body-parser'); 
 dontenv.config()
+
 app.use(cors({
-  origin: 'https://e-commerce-web-6qp7.onrender.com', 
+  origin: 'https://e-commerce-20.onrender.com',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
+  credentials: true, 
 }));
 
 app.use(express.static(path.join(__dirname, 'Frontend/app/build')));
