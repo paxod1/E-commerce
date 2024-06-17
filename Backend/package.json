@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "build": "react-scripts build",
-  "start": "node index.js"
+  "start": "nodemon index.js"
     
   },
   "author": "",
