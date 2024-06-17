@@ -34,13 +34,7 @@ app.use('/home', UserRouter);
 app.use('/Admin', AdminRouter);
 app.use('/company', CompanyRouter);
 
-app.get('/', (req, res, next) => {
-  try {
-    res.sendFile(path.join(__dirname, 'Frontend/app/build', 'index.js'));
-  } catch (error) {
-    next(error);
-  }
-});
+
 const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => {
   console.log(`port ${PORT} is connected`);
