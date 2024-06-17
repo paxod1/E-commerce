@@ -18,6 +18,7 @@ app.use(cors({
 }));
 
 app.use(express.static(path.join(__dirname, 'Frontend/app/build')));
+
 app.use(express.json());
 
 const UserRouter = require('./Router/UserRouter');
