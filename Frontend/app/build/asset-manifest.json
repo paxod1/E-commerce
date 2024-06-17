@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.d7760a6b.css",
-    "main.js": "/static/js/main.db2dc4e2.js",
+    "main.js": "/static/js/main.c696dc63.js",
     "static/js/453.5565870f.chunk.js": "/static/js/453.5565870f.chunk.js",
     "static/media/1713937035750ford-mustang-shelby-gt500-muscle-car-vehicle-car-1768793-wallhere.com.jpg": "/static/media/1713937035750ford-mustang-shelby-gt500-muscle-car-vehicle-car-1768793-wallhere.com.0cb4b03a7460c194deea.jpg",
     "static/media/1713937214736ford-mustang-shelby-gt500-muscle-car-vehicle-car-1768793-wallhere.com.jpg": "/static/media/1713937214736ford-mustang-shelby-gt500-muscle-car-vehicle-car-1768793-wallhere.com.0cb4b03a7460c194deea.jpg",
@@ -103,11 +103,11 @@
     "static/media/1716276751981jeansss.jpg": "/static/media/1716276751981jeansss.31c9b4c41a106f58a6d4.jpg",
     "index.html": "/index.html",
     "main.d7760a6b.css.map": "/static/css/main.d7760a6b.css.map",
-    "main.db2dc4e2.js.map": "/static/js/main.db2dc4e2.js.map",
+    "main.c696dc63.js.map": "/static/js/main.c696dc63.js.map",
     "453.5565870f.chunk.js.map": "/static/js/453.5565870f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d7760a6b.css",
-    "static/js/main.db2dc4e2.js"
+    "static/js/main.c696dc63.js"
   ]
 }

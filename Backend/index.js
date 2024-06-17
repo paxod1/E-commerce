@@ -34,7 +34,7 @@ app.use('/home', UserRouter);
 app.use('/Admin', AdminRouter);
 app.use('/company', CompanyRouter);
 
-app.get('/', (req, res, next) => {
+app.get('', (req, res, next) => {
   try {
     res.sendFile(path.join(__dirname, 'Frontend/app/build', 'index.html'));
   } catch (error) {
