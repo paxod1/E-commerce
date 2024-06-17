@@ -36,7 +36,7 @@ app.use('/company', CompanyRouter);
 
 app.get('/', (req, res, next) => {
   try {
-    res.sendFile(path.join(__dirname, 'Frontend/app/build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'Frontend/app/build', 'index.js'));
   } catch (error) {
     next(error);
   }
