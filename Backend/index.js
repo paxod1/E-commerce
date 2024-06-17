@@ -18,6 +18,7 @@ app.use(cors({
 }));
 
 app.use(express.static(path.join(__dirname, 'Frontend/app/build')));
+
 app.use(express.json());
 
 const UserRouter = require('./Router/UserRouter');
@@ -30,17 +31,27 @@ mongoose.connect(process.env.MongoUrl).then(() => {
   console.log(err);
 });
 
+<<<<<<< HEAD
 app.use('/home', UserRouter);
 app.use('/Admin', AdminRouter);
 app.use('/company', CompanyRouter);
 
 app.get('', (req, res, next) => {
+=======
+app.get('/', (req, res, next) => {
+>>>>>>> ec12b155d82d89dde8a5c236dbcc879e434c8617
   try {
     res.sendFile(path.join(__dirname, 'Frontend/app/build', 'index.html'));
   } catch (error) {
     next(error);
   }
 });
+
+app.use('/home', UserRouter);
+app.use('/Admin', AdminRouter);
+app.use('/company', CompanyRouter);
+
+
 const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => {
   console.log(`port ${PORT} is connected`);
