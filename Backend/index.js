@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
-
+const bodyParser = require('body-parser');
 dotenv.config();
 
 app.use(cors({
@@ -18,7 +18,7 @@ app.use(cors({
 app.use(express.static(path.join(__dirname, 'Frontend/app/build')));
 app.use(express.json());
 
-// Routers
+
 const UserRouter = require('./Router/UserRouter');
 const AdminRouter = require('./Router/AdminRouter');
 const CompanyRouter = require('./Router/CompanyRouter');
@@ -44,3 +44,4 @@ const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
