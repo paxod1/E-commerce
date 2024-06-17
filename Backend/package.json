@@ -1,9 +1,9 @@
 {
-  "name": "backend",
-   "main": "Backend/index.js",
+   "name": "e-commerce",
+  "version": "1.0.0",
   "scripts": {
     "build": "cd Frontend/app && npm install && npm run build",
-    "start": "cd Backend && node index.js"
+    "start": "node Backend/index.js"
   },
   "author": "",
   "license": "ISC",
