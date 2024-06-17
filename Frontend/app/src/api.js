@@ -13,12 +13,11 @@ export const SignupData = async (data) => {
 
 export const loginData = async (data, dispatch) => {
     try {
-        console.log("apiiii>>>>>>>>>>>>")
         const loginInfo = await basicRequest.post('/home/login', data)
         console.log("login sussesfully", loginInfo.data)
         dispatch(LoginData(loginInfo.data))
     } catch (err) {
-        console.log("from frontend>>>>>",err)
+        console.log(err)
     }
 }
 

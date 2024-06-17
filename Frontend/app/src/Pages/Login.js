@@ -12,7 +12,6 @@ function Login() {
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
     async function login() {
-        console.log(email,password)
         loginData({ email, password }, dispatch)
     }
     return (
