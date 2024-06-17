@@ -30,6 +30,14 @@ mongoose.connect(process.env.MongoUrl).then(() => {
   console.log(err);
 });
 
+app.get('/', (req, res, next) => {
+  try {
+    res.sendFile(path.join(__dirname, 'Frontend/app/build', 'index.html'));
+  } catch (error) {
+    next(error);
+  }
+});
+
 app.use('/home', UserRouter);
 app.use('/Admin', AdminRouter);
 app.use('/company', CompanyRouter);
