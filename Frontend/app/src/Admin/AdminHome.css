@@ -1,0 +1,24 @@
+.main-navgap{
+    margin-top: 110px;
+}
+.maindiv{
+    
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.adminInput{
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.innerdiv{
+    width: 30%;
+}
+.sibmitbutton{
+    color: white;
+    background-color: blueviolet;
+}

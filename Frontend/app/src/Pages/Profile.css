@@ -1,0 +1,20 @@
+
+.profileBox{
+    margin-top: 60px;
+    padding: 50px;
+    color: #393838;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(240, 240, 240);
+}
+
+.heading{
+    font-size: 30px;
+   
+   
+}
+.updata{
+    text-decoration: none;
+    color: white;
+}
