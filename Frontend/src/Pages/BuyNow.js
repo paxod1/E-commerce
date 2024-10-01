@@ -3,16 +3,16 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { basicRequest, TokenRequest } from '../AxiosCreate';
 import { placeOrder } from '../api';
 import { useSelector } from 'react-redux';
-import { 
-  MDBCard, 
-  MDBCardBody, 
-  MDBCardFooter, 
-  MDBCardHeader, 
-  MDBContainer, 
-  MDBRow, 
-  MDBCol, 
-  MDBTypography, 
-  MDBCardImage 
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardFooter,
+  MDBCardHeader,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBTypography,
+  MDBCardImage
 } from 'mdb-react-ui-kit';
 import { Form } from 'react-bootstrap';
 import Nav1 from '../nav';
@@ -171,28 +171,30 @@ function BuyNow() {
                           onChange={(e) => setPin(e.target.value)}
                           required
                         />
-                        <MDBCardImage
-                          fluid
-                          className="align-self-center my-3"
-                          src={require(`../Images/${newOrder.image}`)}
-                          width="250"
-                        />
+                        <div className='product-image'>
+                          <MDBCardImage
+                            fluid
+                            className="align-self-center my-3"
+                            src={require(`../Images/${newOrder.image}`)}
+                            width="250"
+                          />
+                        </div>
                       </div>
                     </MDBCardBody>
                     <MDBCardFooter className="p-4">
                       <div className="d-flex justify-content-between">
                         <MDBTypography tag="h5" className="fw-normal mb-0">
-                          <button 
-                            className="btn btn-warning" 
-                            onClick={() => handleRazorpayPayment({ 
-                              newOrder, 
-                              name, 
-                              email, 
-                              phoneNumber, 
-                              address, 
-                              pin, 
-                              companyId, 
-                              userID 
+                          <button
+                            className="btn btn-warning"
+                            onClick={() => handleRazorpayPayment({
+                              newOrder,
+                              name,
+                              email,
+                              phoneNumber,
+                              address,
+                              pin,
+                              companyId,
+                              userID
                             })}
                           >
                             Place order

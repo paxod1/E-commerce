@@ -29,7 +29,7 @@ body {
   }
   
   /* MDBCardImage Styles */
-  .MDBCardImage {
+  .product-image{
     max-width: 100%; /* Ensure it doesn't exceed the card width */
     height: auto; /* Maintain aspect ratio */
   }
@@ -44,7 +44,7 @@ body {
       margin-bottom: 20px; /* Add space below card */
     }
   
-    .MDBCardImage {
+    .product-image{
       display: none; /* Hide image on small screens */
     }
   }
