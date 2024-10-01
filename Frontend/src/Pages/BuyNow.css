@@ -31,7 +31,8 @@ body {
   /* MDBCardImage Styles */
   .product-image{
     max-width: 100%; /* Ensure it doesn't exceed the card width */
-    height: auto; /* Maintain aspect ratio */
+    height: auto;
+    display: none;  /* Maintain aspect ratio */
   }
   
   /* Responsive Styles */
