@@ -100,7 +100,7 @@ function BuyNow() {
       <div className='navbarhome'>
         <Nav1 />
       </div>
-      <div className='OrderPage' style={{ marginTop: "77px" }}>
+      <div className='OrderPage' style={{ marginTop: "77px",height:'auto'}}>
         {newOrder && Object.keys(newOrder).length !== 0 && (
           <section className="vh-100 gradient-custom-2">
             <MDBContainer className="py-5 h-100">
