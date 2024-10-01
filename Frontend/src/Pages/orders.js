@@ -39,6 +39,7 @@ function Orders() {
   async function Cancelorder(id) {
     try {
       await TokenRequest.delete(`/Admin/orderdelete/${id}`);
+      fetchOrders();
       console.log("canceled");
     } catch (err) {
       console.log(err);
