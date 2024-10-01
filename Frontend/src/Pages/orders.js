@@ -27,15 +27,18 @@ function Orders() {
   }
   console.log("user id>>>>>>>>>>>>>", userID);
 
-  useEffect(() => {
-    const fetchOrders = async () => {
+  const fetchOrders = async () => {
+    try {
       const result = await TokenRequest.get('/Admin/Oreders', { params: { userID } });
       console.log(result.data);
       setOrderlist(result.data);
-    };
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+    }
+  };
+  useEffect(() => {
     fetchOrders();
   }, []);
-
   async function Cancelorder(id) {
     try {
       await TokenRequest.delete(`/Admin/orderdelete/${id}`);
@@ -66,7 +69,6 @@ function Orders() {
                               <p className="text-muted mb-2">
                                 Order ID <span className="fw-bold text-body">{data._id}</span>
                               </p>
-                              {/* Use createdAt here for "Place On" */}
                               <p className="text-muted mb-0">
                                 Place On <span className="fw-bold text-body">{new Date(data.createdAt).toLocaleDateString()} {new Date(data.createdAt).toLocaleTimeString()}</span>
                               </p>
