@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
-import { MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
-import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Card, Alert, Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { loginData } from '../api';
@@ -11,6 +10,7 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(''); 
+    const [loading, setLoading] = useState(false); // To track loading state
     const dispatch = useDispatch();
 
     // Email validation function
@@ -27,6 +27,7 @@ function Login() {
     async function login(e) {
         e.preventDefault(); 
 
+        // Basic validation checks before login
         if (!validateEmail(email)) {
             setError('Please enter a valid email address.');
             return;
@@ -38,7 +39,14 @@ function Login() {
         }
 
         setError(''); 
-         loginData({ email, password }, dispatch);
+        setLoading(true); // Show loading spinner while API call is in progress
+        try {
+            await loginData({ email, password }, dispatch);
+            setLoading(false); // Hide loading spinner after API call completes
+        } catch (err) {
+            setError('Login failed. Please try again.');
+            setLoading(false); // Hide loading spinner on error
+        }
     }
 
     return (
@@ -74,8 +82,14 @@ function Login() {
                                         />
                                     </Form.Group>
 
-                                    <Button variant="primary" type="submit" className="w-100">
-                                        Login
+                                    <Button variant="primary" type="submit" className="w-100" disabled={loading}>
+                                        {loading ? (
+                                            <>
+                                                <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> Loading...
+                                            </>
+                                        ) : (
+                                            'Login'
+                                        )}
                                     </Button>
                                 </Form>
 
