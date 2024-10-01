@@ -123,7 +123,7 @@ function BuyNow() {
                         </MDBTypography>
                         <p className="text-muted"> Qt: 1 item</p>
                         <MDBTypography tag="h4" className="mb-3">
-                          ₹ {newOrder.productofferprice} <span className="small text-muted"> via (COD) </span>
+                          ₹ {newOrder.productofferprice} <span className="small text-muted"> via (online) </span>
                         </MDBTypography>
 
                         <Form.Control

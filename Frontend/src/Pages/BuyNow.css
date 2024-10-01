@@ -28,14 +28,7 @@ body {
     border-radius: 5px; /* Rounded corners */
   }
   
-  /* MDBCardImage Styles */
-  .product-image{
-    max-width: 100%; /* Ensure it doesn't exceed the card width */
-    height: auto;
-    display: none;  /* Maintain aspect ratio */
-  }
-  
-  /* Responsive Styles */
+
   @media (max-width: 768px) {
     .OrderPage {
       padding: 10px; /* Reduce padding for small screens */
@@ -45,9 +38,6 @@ body {
       margin-bottom: 20px; /* Add space below card */
     }
   
-    .product-image{
-      display: none; /* Hide image on small screens */
-    }
   }
   
   /* Footer Styles */
