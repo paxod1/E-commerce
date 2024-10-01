@@ -3,21 +3,20 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { basicRequest, TokenRequest } from '../AxiosCreate';
 import { placeOrder } from '../api';
 import { useSelector } from 'react-redux';
-import './BuyNow.css';
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardFooter,
-  MDBCardHeader,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBTypography,
-  MDBCardImage
+import { 
+  MDBCard, 
+  MDBCardBody, 
+  MDBCardFooter, 
+  MDBCardHeader, 
+  MDBContainer, 
+  MDBRow, 
+  MDBCol, 
+  MDBTypography, 
+  MDBCardImage 
 } from 'mdb-react-ui-kit';
+import { Form } from 'react-bootstrap';
 import Nav1 from '../nav';
 import UserFooter from './UserFooter';
-import { Form } from 'react-bootstrap';
 
 function BuyNow() {
   const { id } = useParams();
@@ -124,7 +123,7 @@ function BuyNow() {
                         </MDBTypography>
                         <p className="text-muted"> Qt: 1 item</p>
                         <MDBTypography tag="h4" className="mb-3">
-                          $ {newOrder.productofferprice} <span className="small text-muted"> via (COD) </span>
+                          ₹ {newOrder.productofferprice} <span className="small text-muted"> via (COD) </span>
                         </MDBTypography>
 
                         <Form.Control
@@ -183,7 +182,19 @@ function BuyNow() {
                     <MDBCardFooter className="p-4">
                       <div className="d-flex justify-content-between">
                         <MDBTypography tag="h5" className="fw-normal mb-0">
-                          <button onClick={() => handleRazorpayPayment({ newOrder, name, email, phoneNumber, address, pin, companyId, userID })}>
+                          <button 
+                            className="btn btn-warning" 
+                            onClick={() => handleRazorpayPayment({ 
+                              newOrder, 
+                              name, 
+                              email, 
+                              phoneNumber, 
+                              address, 
+                              pin, 
+                              companyId, 
+                              userID 
+                            })}
+                          >
                             Place order
                           </button>
                         </MDBTypography>
@@ -205,4 +216,3 @@ function BuyNow() {
 }
 
 export default BuyNow;
-

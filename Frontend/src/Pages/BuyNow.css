@@ -1,18 +1,16 @@
-
 .custom-input {
     background-color: #f1f1f1; /* Lighter background for inputs */
     border: 1px solid #ccc; /* Standard border */
     border-radius: 5px; /* Rounded corners */
-  }
-  
-  .card-stepper {
+}
+
+.card-stepper {
     border: 1px solid #eee; /* Card border */
     border-radius: 8px; /* Rounded card corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  }
-  
-  .OrderPage {
+}
+
+.OrderPage {
     background-color: #ffffff; /* White background for contrast */
     padding: 20px; /* Padding around the page */
-  }
-  
+}
