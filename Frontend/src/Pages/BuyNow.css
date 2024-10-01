@@ -1,10 +1,24 @@
+
 .custom-input {
     background-color: rgb(97 97 231 / 8%);
+    width: 100%; 
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 576px) {
     .custom-input {
-      width: 100%;
+      width: 100%; 
+    }
+  
+    .OrderPage {
+      margin-top: 20px;
+    }
+  
+    .card-stepper {
+      border-radius: 8px; 
+    }
+  
+    .navbarhome {
+      margin-bottom: 20px; 
     }
   }
   
