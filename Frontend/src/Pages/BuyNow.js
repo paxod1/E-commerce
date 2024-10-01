@@ -171,7 +171,7 @@ function BuyNow() {
                           onChange={(e) => setPin(e.target.value)}
                           required
                         />
-               
+                        </div>
                     </MDBCardBody>
                     <MDBCardFooter className="p-4">
                       <div className="d-flex justify-content-between">
