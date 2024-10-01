@@ -38,7 +38,7 @@ function Login() {
         }
 
         setError(''); 
-        await loginData({ email, password }, dispatch);
+         loginData({ email, password }, dispatch);
     }
 
     return (
