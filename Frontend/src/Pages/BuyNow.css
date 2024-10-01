@@ -6,7 +6,7 @@
 
 @media (max-width: 576px) {
     .custom-input {
-        width: 100%; /* Full width for small screens */
+        width: 50%; 
     }
 
     .OrderPage {
