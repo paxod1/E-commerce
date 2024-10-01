@@ -6,6 +6,23 @@
   background: #eee;
   background-color: rgb(240, 240, 240);
 }
+
+
+/* Platform icon styling */
+.platform-icon {
+  display: flex;
+  align-items: center; /* Vertically center the icon and text */
+  justify-content: center; /* Horizontally center the icon and text */
+}
+
+.platform-icon .platform-text {
+  font-size: 1.5rem; /* Adjust platform name size */
+  font-weight: bold;
+  color: #333;
+  margin-left: -5px; /* Reduce the gap by applying a negative margin */
+  padding-left: 0; /* Remove padding */
+}
+
 /* Login page container */
 .login-page {
   background-color: #f5f5f5;

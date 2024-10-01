@@ -4,6 +4,7 @@ import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { SignupData } from '../api'; // Assuming this is your API function for signup
+import { IoLogoFoursquare } from 'react-icons/io';
 
 function Signup() {
     const [firstname, setFirstname] = useState('');
@@ -68,6 +69,9 @@ function Signup() {
             <Container>
                 <Row className="justify-content-center align-items-center h-100">
                     <Col md={8} lg={6} xl={4}>
+                    <div className="text-center platform-icon">
+                    <IoLogoFoursquare size={35} /><p className="platform-text">amous</p>
+                </div>
                         <Card className="signup-card shadow-lg">
                             <Card.Body>
                                 <h2 className="text-center mb-4">Sign Up</h2>

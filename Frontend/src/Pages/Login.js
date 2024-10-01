@@ -5,11 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { loginData } from '../api';
 import { useDispatch } from 'react-redux';
+import { IoLogoFoursquare } from 'react-icons/io';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(''); 
+    const [error, setError] = useState('');
     const [loading, setLoading] = useState(false); // To track loading state
     const dispatch = useDispatch();
 
@@ -25,7 +26,7 @@ function Login() {
     };
 
     async function login(e) {
-        e.preventDefault(); 
+        e.preventDefault();
 
         // Basic validation checks before login
         if (!validateEmail(email)) {
@@ -38,7 +39,7 @@ function Login() {
             return;
         }
 
-        setError(''); 
+        setError('');
         setLoading(true); // Show loading spinner while API call is in progress
         try {
             await loginData({ email, password }, dispatch);
@@ -54,6 +55,9 @@ function Login() {
             <Container>
                 <Row className="justify-content-center align-items-center h-100">
                     <Col md={8} lg={6} xl={4}>
+                        <div className="text-center platform-icon">
+                            <IoLogoFoursquare size={35} /><p className="platform-text">amous</p>
+                        </div>
                         <Card className="login-card shadow-lg">
                             <Card.Body>
                                 <h2 className="text-center mb-4">Login</h2>
