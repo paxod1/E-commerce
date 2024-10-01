@@ -10,8 +10,15 @@ const bodyParser = require('body-parser');
 
 dotenv.config();
 
-// CORS configuration
-app.use(cors());
+
+const corsOptions = {
+  origin: 'https://e-commerce-blond-mu.vercel.app', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  credentials: true, 
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.static(path.join(__dirname, 'Frontend/app/build')));
 app.use(express.json());
