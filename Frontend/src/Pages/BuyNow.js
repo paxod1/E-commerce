@@ -13,7 +13,8 @@ import {
   MDBRow,
   MDBCol,
   MDBTypography,
-  MDBCardImage
+  MDBCardImage,
+  MDBButton
 } from 'mdb-react-ui-kit';
 import Nav1 from '../nav';
 import UserFooter from './UserFooter';
@@ -84,7 +85,7 @@ function BuyNow() {
           address,
         },
         theme: {
-          color: "#3399cc",
+          color: "#FF9800", // Flipkart orange
         },
       };
 
@@ -100,34 +101,37 @@ function BuyNow() {
       <div className='navbarhome'>
         <Nav1 />
       </div>
-      <div className='OrderPage' style={{ marginTop: "77px",height:'auto'}}>
+      <div className='OrderPage' style={{ marginTop: "77px" }}>
         {newOrder && Object.keys(newOrder).length !== 0 && (
           <section className="vh-100 gradient-custom-2">
             <MDBContainer className="py-5 h-100">
-              <MDBRow className="justify-content-center align-items-center h-100">
+              <MDBRow className="justify-content-center align-items-start h-100">
                 <MDBCol md="10" lg="8" xl="6">
                   <MDBCard className="card-stepper">
-                    <MDBCardHeader className="p-4">
-                      <div className="d-flex justify-content-between align-items-center">
-                        <p className="text-muted mb-2">
-                          <span className="fw-bold text-body">Place Order</span>
-                        </p>
-                      </div>
+                    <MDBCardHeader className="p-4 text-center" style={{ backgroundColor: "#f9f9f9" }}>
+                      <h3 className="fw-bold text-body">Order Summary</h3>
                     </MDBCardHeader>
                     <MDBCardBody className="p-4">
-                      <MDBTypography tag="h5" className="bold">
+                      <MDBCardImage
+                        fluid
+                        className="mb-3"
+                        src={require(`../Images/${newOrder.image}`)}
+                        alt={newOrder.productname}
+                        style={{ maxHeight: '200px', objectFit: 'contain' }}
+                      />
+                      <MDBTypography tag="h5" className="bold text-center">
                         {newOrder.productname}
                       </MDBTypography>
-                      <p className="text-muted"> Qt: 1 item</p>
-                      <MDBTypography tag="h4" className="mb-3">
-                        $ {newOrder.productofferprice} <span className="small text-muted"> via (COD) </span>
+                      <p className="text-muted text-center">Qt: 1 item</p>
+                      <MDBTypography tag="h4" className="mb-3 text-center">
+                        ₹ {newOrder.productofferprice} <span className="small text-muted">via (COD)</span>
                       </MDBTypography>
 
                       <Form.Control
                         className='custom-input mb-2'
                         size='sm'
                         type='text'
-                        placeholder='Enter name'
+                        placeholder='Enter your name'
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
@@ -145,7 +149,7 @@ function BuyNow() {
                         className='custom-input mb-2'
                         size="sm"
                         type="number"
-                        placeholder="Enter contact number"
+                        placeholder="Contact number"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         required
@@ -163,29 +167,17 @@ function BuyNow() {
                         className='custom-input mb-2'
                         size="sm"
                         type="text"
-                        placeholder="Enter PinCode"
+                        placeholder="PinCode"
                         value={pin}
                         onChange={(e) => setPin(e.target.value)}
                         required
                       />
-                      <MDBCardImage
-                        fluid
-                        className="align-self-center my-3"
-                        src={require(`../Images/${newOrder.image}`)}
-                        width="250"
-                      />
                     </MDBCardBody>
-                    <MDBCardFooter className="p-4">
-                      <div className="d-flex justify-content-between">
-                        <MDBTypography tag="h5" className="fw-normal mb-0">
-                          <button className="btn btn-primary" onClick={handleRazorpayPayment}>
-                            Place order
-                          </button>
-                        </MDBTypography>
-                        <MDBTypography tag="h5" className="fw-normal mb-0">
-                          <p className="text-muted">Payment method: online</p>
-                        </MDBTypography>
-                      </div>
+                    <MDBCardFooter className="p-4 text-center">
+                      <MDBButton className="btn btn-warning" onClick={handleRazorpayPayment}>
+                        Place Order
+                      </MDBButton>
+                      <p className="text-muted mt-2">Payment method: online</p>
                     </MDBCardFooter>
                   </MDBCard>
                 </MDBCol>
