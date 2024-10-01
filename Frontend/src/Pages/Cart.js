@@ -151,7 +151,7 @@ function Cart() {
                                                         className="border-sm-start-none border-start"
                                                     >
                                                         <div className="d-flex flex-row align-items-center mb-1">
-                                                            <h4 className="mb-1 me-1">${data.productprice}</h4>
+                                                            <h4 className="mb-1 me-1">${data.productofferprice}</h4>
                                                         </div>
                                                         <h6 className="text-success">Quantity:{data.Quantity} </h6>
                                                         <h6 className="text-success">Free shipping</h6>

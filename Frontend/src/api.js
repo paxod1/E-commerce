@@ -12,8 +12,10 @@ export const SignupData = async (data) => {
 }
 
 export const loginData = async (data, dispatch) => {
+    console.log("from api login ",data);
+    
     try {
-        const loginInfo = await basicRequest.post('/home/login', data)
+        const loginInfo = await basicRequest.post('/home/login',data)
         console.log("login sussesfully", loginInfo.data)
         dispatch(LoginData(loginInfo.data))
     } catch (err) {
