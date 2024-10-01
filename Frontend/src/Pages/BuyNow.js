@@ -14,8 +14,8 @@ import {
   MDBCol,
   MDBTypography,
   MDBCardImage,
-  MDBButton
-} from 'mdb-react-ui-kit';
+  MDBBtn // Change this line
+} from 'mdb-react-ui-kit'; // Ensure this import is correct
 import Nav1 from '../nav';
 import UserFooter from './UserFooter';
 import { Form } from 'react-bootstrap';
@@ -174,9 +174,9 @@ function BuyNow() {
                       />
                     </MDBCardBody>
                     <MDBCardFooter className="p-4 text-center">
-                      <MDBButton className="btn btn-warning" onClick={handleRazorpayPayment}>
+                      <MDBBtn className="btn-warning" onClick={handleRazorpayPayment}>
                         Place Order
-                      </MDBButton>
+                      </MDBBtn>
                       <p className="text-muted mt-2">Payment method: online</p>
                     </MDBCardFooter>
                   </MDBCard>

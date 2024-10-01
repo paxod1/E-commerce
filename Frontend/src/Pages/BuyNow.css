@@ -1,8 +1,8 @@
-
 .custom-input {
     background-color: #f1f1f1; /* Lighter background for inputs */
     border: 1px solid #ccc; /* Standard border */
     border-radius: 5px; /* Rounded corners */
+    width: 100%; /* Full width for better touch area */
   }
   
   .card-stepper {
@@ -14,5 +14,16 @@
   .OrderPage {
     background-color: #ffffff; /* White background for contrast */
     padding: 20px; /* Padding around the page */
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media (max-width: 768px) {
+    .OrderPage {
+      padding: 10px; /* Less padding on smaller screens */
+    }
+  
+    .custom-input {
+      font-size: 14px; /* Smaller font size for inputs */
+    }
   }
   
