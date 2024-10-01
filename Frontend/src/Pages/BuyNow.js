@@ -171,14 +171,6 @@ function BuyNow() {
                           onChange={(e) => setPin(e.target.value)}
                           required
                         />
-                        
-                          <MDBCardImage
-                            fluid
-                            className="product-image"
-                            src={require(`../Images/${newOrder.image}`)}
-                            width="250"
-                          />
-                        </div>
                
                     </MDBCardBody>
                     <MDBCardFooter className="p-4">
