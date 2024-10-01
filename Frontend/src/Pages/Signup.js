@@ -1,84 +1,145 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBInput,
-  MDBIcon,
-
-}
-  from 'mdb-react-ui-kit';
-import { Link } from 'react-router-dom'
-import { SignupData } from '../api';
-
+import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
+import { SignupData } from '../api'; // Assuming this is your API function for signup
 
 function Signup() {
+    const [firstname, setFirstname] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState(''); // To show error messages
+    const [success, setSuccess] = useState(false); // To show success message
+    const navigate = useNavigate();
 
-  const [firstname, setFirstname] = useState('')
-  const [lastname, setLastname] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const navigate =useNavigate()
-  async function register() {
-    try{
-      SignupData({ firstname, lastname, email, password })
-      navigate('/')
-    }catch(err){
-      console.log(err)
+    // Email validation function
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    // Password confirmation validation
+    const validatePasswordConfirmation = (password, confirmPassword) => {
+        return password === confirmPassword;
+    };
+
+    // Handle form submission
+    async function register(e) {
+        e.preventDefault();
+
+        // Check if email is valid
+        if (!validateEmail(email)) {
+            setError('Please enter a valid email address.');
+            return;
+        }
+
+        // Check if password matches confirm password
+        if (!validatePasswordConfirmation(password, confirmPassword)) {
+            setError('Passwords do not match.');
+            return;
+        }
+
+        // Check if password length is at least 6 characters
+        if (password.length < 6) {
+            setError('Password must be at least 6 characters long.');
+            return;
+        }
+
+        // Clear error if all validations pass
+        setError('');
+
+        try {
+            // Assuming SignupData is an API function that sends the data to the server
+            await SignupData({ firstname, email, password });
+            setSuccess(true); // Show success message
+            setTimeout(() => {
+                navigate('/'); // Redirect to home after signup
+            }, 1500);
+        } catch (err) {
+            console.log(err);
+            setError('An error occurred during registration.');
+        }
     }
-    
-  }
 
+    return (
+        <div className="signup-page">
+            <Container>
+                <Row className="justify-content-center align-items-center h-100">
+                    <Col md={8} lg={6} xl={4}>
+                        <Card className="signup-card shadow-lg">
+                            <Card.Body>
+                                <h2 className="text-center mb-4">Sign Up</h2>
 
-  return (
-    <div> <MDBContainer fluid>
+                                {/* Show error message */}
+                                {error && <Alert variant="danger" className="text-center">{error}</Alert>}
 
-      <MDBCard className='text-black m-5' style={{ borderRadius: '25px' }}>
-        <MDBCardBody>
-          <MDBRow>
-            <MDBCol md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
+                                {/* Show success message */}
+                                {success && <Alert variant="success" className="text-center">Signup successful! Redirecting...</Alert>}
 
-              <p classNAme="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                                <Form onSubmit={register}>
+                                    <Form.Group className="mb-3" controlId="formFirstName">
+                                        <Form.Label>Full Name</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Enter full name"
+                                            value={firstname}
+                                            onChange={(e) => setFirstname(e.target.value)}
+                                            required
+                                        />
+                                    </Form.Group>
 
-              <div className="d-flex flex-row align-items-center mb-4 ">
-                <MDBIcon fas icon="user me-3" size='lg' />
-                <MDBInput label='First name' id='form1' type='text' className='w-100' onChange={(e) => setFirstname(e.target.value)} />
-              </div>
-              <div className="d-flex flex-row align-items-center mb-4 ">
-                <MDBIcon fas icon="user me-3" size='lg' />
-                <MDBInput label='Last name' id='form4' type='text' className='w-100' onChange={(e) => setLastname(e.target.value)} />
-              </div>
+                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                                        <Form.Label>Email address</Form.Label>
+                                        <Form.Control
+                                            type="email"
+                                            placeholder="Enter email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            required
+                                        />
+                                    </Form.Group>
 
-              <div className="d-flex flex-row align-items-center mb-4">
-                <MDBIcon fas icon="envelope me-3" size='lg' />
-                <MDBInput label='Your Email' id='form2' type='email' onChange={(e) => setEmail(e.target.value)} />
-              </div>
+                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control
+                                            type="password"
+                                            placeholder="Enter password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
+                                        />
+                                    </Form.Group>
 
-              <div className="d-flex flex-row align-items-center mb-4">
-                <MDBIcon fas icon="lock me-3" size='lg' />
-                <MDBInput label='Password' id='form3' pattern="(?=.\d)(?=.[a-z])(?=.*[A-Z]).{8,}" type='password' onChange={(e) => setPassword(e.target.value)} />
-              </div>
-              <button size='lg' onClick={register} style={{border:'black solid 1px',borderRadius:'5px'}}>Register</button>
-              <p className="small fw-bold mt-2 pt-1 mb-2"> Have an account? <Link to={'/'}><a href="#!" className="link-danger">Login</a></Link></p>
+                                    <Form.Group className="mb-3" controlId="formConfirmPassword">
+                                        <Form.Label>Confirm Password</Form.Label>
+                                        <Form.Control
+                                            type="password"
+                                            placeholder="Confirm password"
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            required
+                                        />
+                                    </Form.Group>
 
-            </MDBCol>
+                                    <Button variant="primary" type="submit" className="w-100">
+                                        Sign Up
+                                    </Button>
+                                </Form>
 
-            <MDBCol md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
-              <MDBCardImage src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp' fluid />
-            </MDBCol>
-
-          </MDBRow>
-        </MDBCardBody>
-      </MDBCard>
-
-    </MDBContainer>
-    </div>
-  )
+                                <div className="text-center mt-3">
+                                    <p className="small fw-bold mt-2 pt-1 mb-2">
+                                        Already have an account? <Link to={'/'}>Login</Link>
+                                    </p>
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
+        </div>
+    );
 }
 
-export default Signup
+export default Signup;
