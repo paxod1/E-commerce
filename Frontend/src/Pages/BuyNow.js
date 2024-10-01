@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { basicRequest, TokenRequest } from '../AxiosCreate';
-import axios from 'axios';
 import { placeOrder } from '../api';
 import { useSelector } from 'react-redux';
+import './BuyNow.css'
 import {
   MDBCard,
   MDBCardBody,

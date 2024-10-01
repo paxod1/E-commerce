@@ -15,10 +15,10 @@
   padding: 10px;
 }
 
-/* Card styling */
+
 .card {
   margin: 5px;
-  width: 100%; /* Ensure cards take full width */
+  width: 100%; 
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #efefef;
