@@ -4,8 +4,8 @@ const router = express.Router();
 const Orderpayment = require('../Model/OrderSchema'); 
 
 const razorpayInstance = new Razorpay({
-  key_id: 'rzp_test_T975QT6olxQszO', // Make sure this is the correct key
-  key_secret: 'ySggkZYOFVedl1x9aojlV3Eb', 
+  key_id: process.env.key_id, 
+  key_secret: process.env.key_secret, 
 });
 
 router.post('/createOrder', async (req, res) => {
