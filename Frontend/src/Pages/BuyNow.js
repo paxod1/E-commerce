@@ -13,9 +13,8 @@ import {
   MDBRow,
   MDBCol,
   MDBTypography,
-  MDBCardImage,
-  MDBBtn // Change this line
-} from 'mdb-react-ui-kit'; // Ensure this import is correct
+  MDBCardImage
+} from 'mdb-react-ui-kit';
 import Nav1 from '../nav';
 import UserFooter from './UserFooter';
 import { Form } from 'react-bootstrap';
@@ -32,7 +31,10 @@ function BuyNow() {
   const [companyId, setCompanyId] = useState('');
 
   const MyData = useSelector((state) => state.login.LoginInfo[0]);
-  let userID = MyData ? MyData.id : null;
+  let userID;
+  if (MyData) {
+    userID = MyData.id;
+  }
 
   const fetchProduct = async (productId) => {
     try {
@@ -53,7 +55,7 @@ function BuyNow() {
     fetchProduct(id);
   }, [id]);
 
-  const handleRazorpayPayment = async () => {
+  const handleRazorpayPayment = async (data) => {
     if (!name || !email || !phoneNumber || !address || !pin) {
       alert('Please fill in all the required fields!');
       return;
@@ -61,7 +63,7 @@ function BuyNow() {
 
     try {
       const orderData = await basicRequest.post('/Payment/createOrder', {
-        amount: newOrder.productofferprice * 100,
+        amount: newOrder.productofferprice * 100, 
       });
 
       const options = {
@@ -73,7 +75,7 @@ function BuyNow() {
         image: "/your_logo.png",
         order_id: orderData.data.id,
         handler: async function (response) {
-          await placeOrder({ newOrder, name, email, phoneNumber, address, pin, companyId, userID });
+          await placeOrder(data);
           navigate('/orders');
         },
         prefill: {
@@ -85,7 +87,7 @@ function BuyNow() {
           address,
         },
         theme: {
-          color: "#FF9800", // Flipkart orange
+          color: "#3399cc",
         },
       };
 
@@ -105,79 +107,90 @@ function BuyNow() {
         {newOrder && Object.keys(newOrder).length !== 0 && (
           <section className="vh-100 gradient-custom-2">
             <MDBContainer className="py-5 h-100">
-              <MDBRow className="justify-content-center align-items-start h-100">
+              <MDBRow className="justify-content-center align-items-center h-100">
                 <MDBCol md="10" lg="8" xl="6">
                   <MDBCard className="card-stepper">
-                    <MDBCardHeader className="p-4 text-center" style={{ backgroundColor: "#f9f9f9" }}>
-                      <h3 className="fw-bold text-body">Order Summary</h3>
+                    <MDBCardHeader className="p-4">
+                      <div className="d-flex justify-content-between align-items-center">
+                        <p className="text-muted mb-2">
+                          <span className="fw-bold text-body">Place Order</span>
+                        </p>
+                      </div>
                     </MDBCardHeader>
                     <MDBCardBody className="p-4">
-                      <MDBCardImage
-                        fluid
-                        className="mb-3"
-                        src={require(`../Images/${newOrder.image}`)}
-                        alt={newOrder.productname}
-                        style={{ maxHeight: '200px', objectFit: 'contain' }}
-                      />
-                      <MDBTypography tag="h5" className="bold text-center">
-                        {newOrder.productname}
-                      </MDBTypography>
-                      <p className="text-muted text-center">Qt: 1 item</p>
-                      <MDBTypography tag="h4" className="mb-3 text-center">
-                        ₹ {newOrder.productofferprice} <span className="small text-muted">via (COD)</span>
-                      </MDBTypography>
+                      <div className="d-flex flex-column mb-4 pb-2">
+                        <MDBTypography tag="h5" className="bold">
+                          {newOrder.productname}
+                        </MDBTypography>
+                        <p className="text-muted"> Qt: 1 item</p>
+                        <MDBTypography tag="h4" className="mb-3">
+                          $ {newOrder.productofferprice} <span className="small text-muted"> via (COD) </span>
+                        </MDBTypography>
 
-                      <Form.Control
-                        className='custom-input mb-2'
-                        size='sm'
-                        type='text'
-                        placeholder='Enter your name'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                      />
-                      <Form.Control
-                        className='custom-input mb-2'
-                        size="sm"
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                      />
-                      <Form.Control
-                        className='custom-input mb-2'
-                        size="sm"
-                        type="number"
-                        placeholder="Contact number"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        required
-                      />
-                      <Form.Control
-                        className='custom-input mb-2'
-                        size="sm"
-                        type="text"
-                        placeholder="Enter address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        required
-                      />
-                      <Form.Control
-                        className='custom-input mb-2'
-                        size="sm"
-                        type="text"
-                        placeholder="PinCode"
-                        value={pin}
-                        onChange={(e) => setPin(e.target.value)}
-                        required
-                      />
+                        <Form.Control
+                          className='custom-input mb-2'
+                          size='sm'
+                          type='text'
+                          placeholder='Enter name'
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          required
+                        />
+                        <Form.Control
+                          className='custom-input mb-2'
+                          size="sm"
+                          type="email"
+                          placeholder="Email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                        />
+                        <Form.Control
+                          className='custom-input mb-2'
+                          size="sm"
+                          type="number"
+                          placeholder="Enter contact number"
+                          value={phoneNumber}
+                          onChange={(e) => setPhoneNumber(e.target.value)}
+                          required
+                        />
+                        <Form.Control
+                          className='custom-input mb-2'
+                          size="sm"
+                          type="text"
+                          placeholder="Enter address"
+                          value={address}
+                          onChange={(e) => setAddress(e.target.value)}
+                          required
+                        />
+                        <Form.Control
+                          className='custom-input mb-2'
+                          size="sm"
+                          type="text"
+                          placeholder="Enter PinCode"
+                          value={pin}
+                          onChange={(e) => setPin(e.target.value)}
+                          required
+                        />
+                        <MDBCardImage
+                          fluid
+                          className="align-self-center my-3"
+                          src={require(`../Images/${newOrder.image}`)}
+                          width="250"
+                        />
+                      </div>
                     </MDBCardBody>
-                    <MDBCardFooter className="p-4 text-center">
-                      <MDBBtn className="btn-warning" onClick={handleRazorpayPayment}>
-                        Place Order
-                      </MDBBtn>
-                      <p className="text-muted mt-2">Payment method: online</p>
+                    <MDBCardFooter className="p-4">
+                      <div className="d-flex justify-content-between">
+                        <MDBTypography tag="h5" className="fw-normal mb-0">
+                          <button onClick={() => handleRazorpayPayment({ newOrder, name, email, phoneNumber, address, pin, companyId, userID })}>
+                            Place order
+                          </button>
+                        </MDBTypography>
+                        <MDBTypography tag="h5" className="fw-normal mb-0">
+                          <p className="text-muted">Payment method: online</p>
+                        </MDBTypography>
+                      </div>
                     </MDBCardFooter>
                   </MDBCard>
                 </MDBCol>
@@ -192,3 +205,4 @@ function BuyNow() {
 }
 
 export default BuyNow;
+
