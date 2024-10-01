@@ -31,10 +31,7 @@ function BuyNow() {
   const [companyId, setCompanyId] = useState('');
 
   const MyData = useSelector((state) => state.login.LoginInfo[0]);
-  let userID;
-  if (MyData) {
-    userID = MyData.id;
-  }
+  let userID = MyData ? MyData.id : null;
 
   const fetchProduct = async (productId) => {
     try {
@@ -55,7 +52,7 @@ function BuyNow() {
     fetchProduct(id);
   }, [id]);
 
-  const handleRazorpayPayment = async (data) => {
+  const handleRazorpayPayment = async () => {
     if (!name || !email || !phoneNumber || !address || !pin) {
       alert('Please fill in all the required fields!');
       return;
@@ -63,7 +60,7 @@ function BuyNow() {
 
     try {
       const orderData = await basicRequest.post('/Payment/createOrder', {
-        amount: newOrder.productofferprice * 100, 
+        amount: newOrder.productofferprice * 100,
       });
 
       const options = {
@@ -75,7 +72,7 @@ function BuyNow() {
         image: "/your_logo.png",
         order_id: orderData.data.id,
         handler: async function (response) {
-          await placeOrder(data);
+          await placeOrder({ newOrder, name, email, phoneNumber, address, pin, companyId, userID });
           navigate('/orders');
         },
         prefill: {
@@ -118,72 +115,70 @@ function BuyNow() {
                       </div>
                     </MDBCardHeader>
                     <MDBCardBody className="p-4">
-                      <div className="d-flex flex-column mb-4 pb-2">
-                        <MDBTypography tag="h5" className="bold">
-                          {newOrder.productname}
-                        </MDBTypography>
-                        <p className="text-muted"> Qt: 1 item</p>
-                        <MDBTypography tag="h4" className="mb-3">
-                          $ {newOrder.productofferprice} <span className="small text-muted"> via (COD) </span>
-                        </MDBTypography>
+                      <MDBTypography tag="h5" className="bold">
+                        {newOrder.productname}
+                      </MDBTypography>
+                      <p className="text-muted"> Qt: 1 item</p>
+                      <MDBTypography tag="h4" className="mb-3">
+                        $ {newOrder.productofferprice} <span className="small text-muted"> via (COD) </span>
+                      </MDBTypography>
 
-                        <Form.Control
-                          className='custom-input mb-2'
-                          size='sm'
-                          type='text'
-                          placeholder='Enter name'
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          required
-                        />
-                        <Form.Control
-                          className='custom-input mb-2'
-                          size="sm"
-                          type="email"
-                          placeholder="Email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          required
-                        />
-                        <Form.Control
-                          className='custom-input mb-2'
-                          size="sm"
-                          type="number"
-                          placeholder="Enter contact number"
-                          value={phoneNumber}
-                          onChange={(e) => setPhoneNumber(e.target.value)}
-                          required
-                        />
-                        <Form.Control
-                          className='custom-input mb-2'
-                          size="sm"
-                          type="text"
-                          placeholder="Enter address"
-                          value={address}
-                          onChange={(e) => setAddress(e.target.value)}
-                          required
-                        />
-                        <Form.Control
-                          className='custom-input mb-2'
-                          size="sm"
-                          type="text"
-                          placeholder="Enter PinCode"
-                          value={pin}
-                          onChange={(e) => setPin(e.target.value)}
-                          required
-                        />
-                        <MDBCardImage
-                          fluid
-                          className="align-self-center my-3"
-                          src={require(`../Images/${newOrder.image}`)}
-                          width="250"
-                        />
-                      </div>
+                      <Form.Control
+                        className='custom-input mb-2'
+                        size='sm'
+                        type='text'
+                        placeholder='Enter name'
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                      />
+                      <Form.Control
+                        className='custom-input mb-2'
+                        size="sm"
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                      <Form.Control
+                        className='custom-input mb-2'
+                        size="sm"
+                        type="number"
+                        placeholder="Enter contact number"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        required
+                      />
+                      <Form.Control
+                        className='custom-input mb-2'
+                        size="sm"
+                        type="text"
+                        placeholder="Enter address"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                        required
+                      />
+                      <Form.Control
+                        className='custom-input mb-2'
+                        size="sm"
+                        type="text"
+                        placeholder="Enter PinCode"
+                        value={pin}
+                        onChange={(e) => setPin(e.target.value)}
+                        required
+                      />
+                      <MDBCardImage
+                        fluid
+                        className="align-self-center my-3"
+                        src={require(`../Images/${newOrder.image}`)}
+                        width="250"
+                      />
                     </MDBCardBody>
                     <MDBCardFooter className="p-4">
                       <div className="d-flex justify-content-between">
                         <MDBTypography tag="h5" className="fw-normal mb-0">
-                          <button onClick={() => handleRazorpayPayment({ newOrder, name, email, phoneNumber, address, pin, companyId, userID })}>
+                          <button className="btn btn-primary" onClick={handleRazorpayPayment}>
                             Place order
                           </button>
                         </MDBTypography>
@@ -205,4 +200,3 @@ function BuyNow() {
 }
 
 export default BuyNow;
-
