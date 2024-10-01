@@ -171,15 +171,15 @@ function BuyNow() {
                           onChange={(e) => setPin(e.target.value)}
                           required
                         />
-                        <div className='product-image'>
+                        
                           <MDBCardImage
                             fluid
-                            className="align-self-center my-3"
+                            className="product-image"
                             src={require(`../Images/${newOrder.image}`)}
                             width="250"
                           />
                         </div>
-                      </div>
+               
                     </MDBCardBody>
                     <MDBCardFooter className="p-4">
                       <div className="d-flex justify-content-between">
