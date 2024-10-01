@@ -1,34 +1,20 @@
-/* Existing styles */
-.OrderPage {
-    background-color: #ffffff; /* White background for contrast */
-    padding: 20px; /* Padding around the page */
-    min-height: calc(100vh - 60px); /* Adjust based on footer height */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Ensure space between header and footer */
-  }
-  
-  /* Custom input styles */
-  .custom-input {
-    background-color: #f1f1f1; /* Lighter background for inputs */
-    border: 1px solid #ccc; /* Standard border */
-    border-radius: 5px; /* Rounded corners */
-  }
-  
-  /* Card stepper styles */
-  .card-stepper {
-    border: 1px solid #eee; /* Card border */
-    border-radius: 8px; /* Rounded card corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  }
-  
-  /* Footer adjustment on small screens */
-  @media (max-width: 768px) {
+/* Media query for responsiveness */
+@media (max-width: 768px) {
     .OrderPage {
       padding: 10px; /* Reduce padding for small screens */
+      min-height: calc(100vh - 60px); /* Keep minimum height considering the footer */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Ensure space between content and footer */
     }
+  
     .card-stepper {
       margin-bottom: 20px; /* Add space below card */
+    }
+  
+    .MDBCardImage {
+      width: 100%; /* Full width of the card */
+      height: auto; /* Maintain aspect ratio */
     }
   }
   
@@ -37,5 +23,11 @@
     position: relative; /* Change to relative to avoid overlap */
     width: 100%; /* Full width */
     bottom: 0; /* Stay at the bottom */
+  }
+  
+  /* Additional styles for MDBCardImage */
+  .MDBCardImage {
+    max-width: 100%; /* Ensure it doesn't exceed the card width */
+    height: auto; /* Keep aspect ratio intact */
   }
   
