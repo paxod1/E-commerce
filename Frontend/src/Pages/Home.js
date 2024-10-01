@@ -14,11 +14,13 @@ import Card from 'react-bootstrap/Card';
 import UserFooter from './UserFooter';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import { basicRequest } from '../AxiosCreate';
+import { useNavigate } from 'react-router-dom';
 
 
 function Home() {
   const [allProduct, setAllProduct] = useState([]);
   const [cartSize, setCartSize] = useState([]);
+  const navigate =useNavigate()
 
   const MyData = useSelector((state) => state.login.LoginInfo[0])
   if (MyData) {

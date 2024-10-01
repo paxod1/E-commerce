@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import {
   MDBBtn,
   MDBContainer,
@@ -22,9 +23,11 @@ function Signup() {
   const [lastname, setLastname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate =useNavigate()
   async function register() {
     try{
       SignupData({ firstname, lastname, email, password })
+      navigate('/')
     }catch(err){
       console.log(err)
     }

@@ -10,10 +10,6 @@ const { constants } = require('crypto')
 const order = require('../Model/Order')
 
 
-
-
-
-
 router.post('/signup', async (req, res) => {
 
     console.log("req.body>>>>>>>>>>>>>", req.body)
@@ -69,7 +65,7 @@ router.put('/UpdateProfile/:id', async (req, res) => {
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "../Frontend/app/src/Images")
+        cb(null, "../Frontend/src/Images")
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now()

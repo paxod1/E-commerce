@@ -19,6 +19,7 @@ app.use(express.json());
 const UserRouter = require('./Router/UserRouter');
 const AdminRouter = require('./Router/AdminRouter');
 const CompanyRouter = require('./Router/CompanyRouter');
+const PaymentRouter = require('./Router/PaymentRouter');
 
 mongoose.connect(process.env.MongoUrl, {
   useNewUrlParser: true,
@@ -33,6 +34,7 @@ mongoose.connect(process.env.MongoUrl, {
 app.use('/home', UserRouter);
 app.use('/Admin', AdminRouter);
 app.use('/company', CompanyRouter);
+app.use('/Payment', PaymentRouter);
 
 // Start server
 
