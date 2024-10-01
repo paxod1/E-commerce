@@ -63,7 +63,7 @@ function BuyNow() {
 
     try {
       const orderData = await basicRequest.post('/Payment/createOrder', {
-        amount: newOrder.productofferprice * 100, 
+        amount: newOrder.productofferprice * 100, // Razorpay requires amount in paise
       });
 
       const options = {
@@ -103,7 +103,7 @@ function BuyNow() {
       <div className='navbarhome'>
         <Nav1 />
       </div>
-      <div className='OrderPage'>
+      <div className='OrderPage' style={{ marginTop: "77px" }}>
         {newOrder && Object.keys(newOrder).length !== 0 && (
           <section className="vh-100 gradient-custom-2">
             <MDBContainer className="py-5 h-100">
@@ -124,9 +124,9 @@ function BuyNow() {
                         </MDBTypography>
                         <p className="text-muted"> Qt: 1 item</p>
                         <MDBTypography tag="h4" className="mb-3">
-                          ₹ {newOrder.productofferprice} <span className="small text-muted"> via (COD) </span>
+                          $ {newOrder.productofferprice} <span className="small text-muted"> via (COD) </span>
                         </MDBTypography>
-  
+
                         <Form.Control
                           className='custom-input mb-2'
                           size='sm'
@@ -201,7 +201,7 @@ function BuyNow() {
       </div>
       <UserFooter />
     </>
-  );  
+  );
 }
 
 export default BuyNow;
