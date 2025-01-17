@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node server.js",
+    "build": "node build.js",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "author": "",
   "license": "ISC",
@@ -21,5 +23,11 @@
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.0",
     "razorpay": "^2.9.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "eslint": "^9.18.0",
+    "eslint-plugin-react": "^7.37.4",
+    "globals": "^15.14.0"
   }
 }

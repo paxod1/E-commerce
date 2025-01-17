@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Nav from '../nav';
 import './Home.css';
-import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
 import { IoBagHandle } from "react-icons/io5";
 import { Link } from 'react-router-dom';
@@ -10,9 +9,7 @@ import { CgProfile } from "react-icons/cg";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Container, Offcanvas } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import Card from 'react-bootstrap/Card';
 import UserFooter from './UserFooter';
-import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import { basicRequest } from '../AxiosCreate';
 import { useNavigate } from 'react-router-dom';
 
